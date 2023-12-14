@@ -20,17 +20,24 @@ router.post('/users',(req, res)=>{
     user.save().then(()=> res.status(201).send(user)).catch(e=> res.send(e));
 })
 
-router.get('/users', auth , async (req, res)=>{
+router.get('/users', async (req, res)=>{ // auth ,
+    console.log(req)
     try{
-
+        User.find({}).then(users=>{
+            res.send(users)
+        })
     } catch(e) {
         res.status(500).send()
     }
-    user.save().then(()=> res.status(201).send(user)).catch(e=> res.send(e));
 })
 
 router.get('/users/me', auth, async (req, res)=> {
-    res.send(req.user)
+    try{
+        res.send(req.user)
+    } catch (e) {
+        console.log(e)
+        res.status(500).send()
+    }
 })
 
 router.post('/login', async (req, res)=>{
