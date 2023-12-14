@@ -34,7 +34,6 @@ router.get('/users/me', auth, async (req, res)=> {
     try{
         res.send(req.user)
     } catch (e) {
-        console.log(e)
         res.status(500).send()
     }
 })
@@ -47,7 +46,6 @@ router.post('/login', async (req, res)=>{
         welcomeFunction(user.email, user.name)
         res.send({user,token})
     } catch (e) {
-        console.log(e)
         res.status(400).send(e)
     }
 })
