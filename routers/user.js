@@ -21,7 +21,6 @@ router.post('/users',(req, res)=>{
 })
 
 router.get('/users', async (req, res)=>{ // auth ,
-    console.log(req)
     try{
         User.find({}).then(users=>{
             res.send(users)
